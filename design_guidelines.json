@@ -1,0 +1,127 @@
+{
+  "project_name": "KYNTHIA",
+  "domain": "Creative Agency / Web3 / Tech",
+  "theme": "Dark",
+  "archetype": "Archetype 4 (Swiss & High-Contrast) + Archetype 5 (Jewel & Luxury)",
+  "vibe": "Cinematic, brutalist, eye-watering, high-end luxury, editorial-meets-tech",
+  "colors": {
+    "background": {
+      "primary": "#030303",
+      "secondary": "#0A0A0A",
+      "tertiary": "#141414"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A3A3A3",
+      "muted": "#525252"
+    },
+    "accents": {
+      "primary": "#FFFFFF",
+      "hover": "#E5E5E5",
+      "border": "rgba(255, 255, 255, 0.1)"
+    }
+  },
+  "typography": {
+    "headings": {
+      "family": "Cabinet Grotesk, sans-serif",
+      "weight": "800",
+      "letter_spacing": "tracking-tighter",
+      "sizes": {
+        "h1": "text-5xl md:text-6xl lg:text-7xl xl:text-8xl",
+        "h2": "text-4xl md:text-5xl lg:text-6xl",
+        "h3": "text-2xl md:text-3xl lg:text-4xl"
+      }
+    },
+    "narrative_emphasis": {
+      "family": "Cormorant Garamond, serif",
+      "weight": "400",
+      "style": "italic",
+      "usage": "Use for the manifesto, specific keywords in the hero, and elegant contrast in section headers."
+    },
+    "body": {
+      "family": "Manrope, sans-serif",
+      "weight": "400",
+      "sizes": {
+        "base": "text-base md:text-lg",
+        "small": "text-sm"
+      }
+    },
+    "technical_labels": {
+      "family": "JetBrains Mono, monospace",
+      "weight": "500",
+      "letter_spacing": "tracking-[0.2em]",
+      "transform": "uppercase",
+      "sizes": "text-xs md:text-sm"
+    }
+  },
+  "layout_and_spacing": {
+    "philosophy": "Aggressive asymmetry, massive negative space, bento grids with empty cells.",
+    "grid_modes": {
+      "hero": "Full viewport height (100vh), centered absolute elements with floating technical labels on corners.",
+      "portfolio": "Tetris grid (grid-cols-1 md:grid-cols-12), wide gaps (gap-12), spanning columns unevenly.",
+      "tiers": "3-column grid (md:grid-cols-3) but styled with progressive visual weight (Echo is minimalist, Aether has blur/morph boundaries, Cosmos has 3D depth/glow)."
+    },
+    "spacing_scale": "p-8, p-12, p-24, p-32. Containers with borders MUST use p-8 minimum."
+  },
+  "surface_strategies": {
+    "navigation": "Crystal Glass variant (bg-black/60 backdrop-blur-2xl border-b border-white/10). Sticky/fixed at top.",
+    "cards": {
+      "echo": "Flat background (#0A0A0A), 1px solid border (border-white/10), no shadow.",
+      "aether": "Tracing Beam variant (animated gradient border using framer-motion), subtle white ambient glow.",
+      "cosmos": "Glassmorphism with heavy backdrop-blur, nested borders, floating 3D elements inside."
+    }
+  },
+  "motion_and_interaction": {
+    "scroll": "MANDATORY: Use `lenis` for smooth scrolling. Momentum and weight are critical for luxury feel.",
+    "cursor": "Custom cursor: large white inverted circle (mix-blend-difference) that expands on interactive elements.",
+    "reveals": "Scroll-driven animations (Framer Motion). Staggered text reveals (line by line masking).",
+    "background": "Dynamic noise/grain texture overlay fixed to viewport (opacity 0.03).",
+    "3d_elements": "Use React Three Fiber/Spline for the hero object and Cosmos card. Alternative: highly complex Framer Motion paths with morphing SVG blobs for Aether."
+  },
+  "components_to_build": {
+    "Hero": "Cinematic full-screen black void. Huge 'KYNTHIA' text intersecting with a 3D fluid/metallic shape or abstract WebGL particle system. Scroll down indicator.",
+    "Manifesto": "Massive typography section mixing Cabinet Grotesk and Cormorant Garamond. Scroll-triggered opacity reveals.",
+    "TierShowcase": "Three cards mapping to ECHO, AETHER, COSMOS. Each card's animation intensity scales up. Cosmos must include a mini WebGL canvas or intensive morphing.",
+    "PortfolioGrid": "Asymmetric bento grid with high-contrast B&W project mockups. Hover effect: image desaturates/distorts slightly, title appears.",
+    "ProcessTimeline": "Vertical scrolling line with technical monospace nodes.",
+    "ContactForm": "Brutalist minimal form. Huge input fields, bottom border only. 'Request a Quote' CTA with magnetic hover effect."
+  },
+  "assets": {
+    "images": {
+      "hero_texture": {
+        "url": "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1536&h=1024",
+        "description": "Abstract black and white geometry for hero background texture"
+      },
+      "portfolio_1": {
+        "url": "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=1024&h=1024",
+        "description": "Minimalist minimalist architecture mockup"
+      },
+      "portfolio_2": {
+        "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1024&h=1024",
+        "description": "High contrast brutalist structure mockup"
+      },
+      "portfolio_3": {
+        "url": "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&q=80&w=1024&h=1024",
+        "description": "Abstract tech nodes mockup"
+      },
+      "noise_overlay": {
+        "url": "https://images.unsplash.com/photo-1604005934533-5c8e31003df2?auto=format&fit=crop&q=80&w=500&h=500",
+        "description": "White noise/grain texture for overlay mapping"
+      }
+    },
+    "icons": "lucide-react for UI interactions. Keep icons extremely minimal and thin stroke-width (1px)."
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure APCA/WCAG standards. Off-white text on black must be highly readable.",
+    "testing_attributes": "All buttons, forms, and tier cards MUST have `data-testid` attributes (e.g., `data-testid='tier-card-cosmos'`, `data-testid='quote-submit-button'`)."
+  },
+  "instructions_to_main_agent": [
+    "Install lenis (@studio-freight/lenis) for smooth scroll, framer-motion for animations.",
+    "Create a global noise overlay (`pointer-events-none mix-blend-overlay opacity-5`) to give the whole site a film grain texture.",
+    "Implement a custom magnetic cursor using framer-motion.",
+    "For the Hero section, if WebGL/Three.js is too complex for the current setup, use Framer Motion to create an intricate, slowly rotating/morphing abstract SVG or high-res blurred blobs that simulate a 3D environment.",
+    "Design the 3 tiers (ECHO, AETHER, COSMOS) with distinct visual rule-sets. ECHO is static and crisp. AETHER introduces blur and morphing borders. COSMOS should be heavily animated with glowing particle effects or 3D floating elements.",
+    "Use pure HTML/Tailwind for marketing sections. Use Shadcn ONLY for the Contact form inputs and dropdowns, but heavily customize them to remove any 'default SaaS' look (make them brutalist with border-b only, no outline).",
+    "Font imports: Cabinet Grotesk (from Fontshare), Cormorant Garamond, Manrope, and JetBrains Mono (from Google Fonts)."
+  ]
+}

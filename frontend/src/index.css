@@ -1,0 +1,340 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------- FONT IMPORTS --------- */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap");
+
+:root {
+    --kb-bg: #030303;
+    --kb-bg-2: #0a0a0a;
+    --kb-bg-3: #141414;
+    --kb-fg: #ffffff;
+    --kb-fg-2: #a3a3a3;
+    --kb-fg-3: #525252;
+    --kb-border: rgba(255, 255, 255, 0.1);
+
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --radius: 0px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    background: var(--kb-bg);
+    color: var(--kb-fg);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: "Manrope", sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+/* Hide default cursor on interactive elements when custom cursor is active */
+@media (hover: none) {
+    body {
+        cursor: auto;
+    }
+}
+
+/* Selection */
+::selection {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+/* --------- TYPOGRAPHY --------- */
+.font-display {
+    font-family: "Cabinet Grotesk", "Inter", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+}
+.font-serif-i {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+.font-body {
+    font-family: "Manrope", sans-serif;
+}
+.font-mono {
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+/* --------- HIDE EMERGENT BADGE (safety net) --------- */
+#emergent-badge,
+a[href*="emergent.sh"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* --------- NOISE OVERLAY --------- */
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.85'/></svg>");
+}
+
+/* --------- CUSTOM CURSOR --------- */
+.kb-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    transition:
+        width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+        height 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.25s ease;
+    background: transparent;
+    will-change: transform, width, height;
+}
+.kb-cursor.is-hover {
+    width: 64px;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.9);
+}
+.kb-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 999px;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+}
+
+@media (hover: none) {
+    .kb-cursor,
+    .kb-cursor-dot {
+        display: none;
+    }
+}
+
+/* --------- MARQUEE --------- */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+.marquee {
+    display: inline-flex;
+    animation: marquee 40s linear infinite;
+}
+
+/* --------- GRADIENT BORDER (AETHER) --------- */
+@keyframes rotate-border {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.aether-border {
+    position: relative;
+    background: #0a0a0a;
+}
+.aether-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.45),
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.35),
+        rgba(255, 255, 255, 0.05)
+    );
+    background-size: 300% 300%;
+    animation: rotate-border 6s linear infinite;
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* --------- COSMOS GLOW --------- */
+.cosmos-glow {
+    position: relative;
+    background:
+        radial-gradient(
+            1000px 400px at 20% 0%,
+            rgba(255, 255, 255, 0.08),
+            transparent 60%
+        ),
+        radial-gradient(
+            800px 400px at 90% 100%,
+            rgba(255, 255, 255, 0.06),
+            transparent 55%
+        ),
+        #0a0a0a;
+}
+
+/* --------- BORDERS --------- */
+.kb-border {
+    border-color: var(--kb-border);
+}
+
+/* --------- MORPH BLOB --------- */
+@keyframes morph {
+    0%,
+    100% {
+        border-radius: 42% 58% 70% 30% / 45% 30% 70% 55%;
+    }
+    33% {
+        border-radius: 70% 30% 46% 54% / 30% 65% 35% 70%;
+    }
+    66% {
+        border-radius: 36% 64% 36% 64% / 66% 36% 64% 34%;
+    }
+}
+.morph-blob {
+    animation: morph 14s ease-in-out infinite;
+}
+
+/* --------- SCROLL INDICATOR --------- */
+@keyframes scroll-dot {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(22px);
+        opacity: 0;
+    }
+}
+.scroll-indicator {
+    width: 22px;
+    height: 38px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+}
+.scroll-indicator span {
+    display: block;
+    width: 2px;
+    height: 6px;
+    background: #fff;
+    border-radius: 2px;
+    animation: scroll-dot 1.6s ease-in-out infinite;
+}
+
+/* --------- UTILITIES --------- */
+.text-balance {
+    text-wrap: balance;
+}
+.text-pretty {
+    text-wrap: pretty;
+}
+
+/* --------- TIER RING ANIMATION --------- */
+@keyframes ring-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.ring-spin {
+    animation: ring-spin 24s linear infinite;
+}
+.ring-spin-slow {
+    animation: ring-spin 60s linear infinite;
+}
+
+/* --------- FORM BRUTALIST --------- */
+.kb-input {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 14px 0;
+    width: 100%;
+    font-family: "Manrope", sans-serif;
+    font-size: 18px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+.kb-input:focus {
+    border-bottom-color: #fff;
+}
+.kb-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+/* Tailwind reset friendly */
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+}
